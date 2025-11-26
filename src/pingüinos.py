@@ -1,4 +1,4 @@
-from collections import namedtuple
+from collections import Counter, defaultdict, namedtuple
 import csv
 
 Penguin = namedtuple("Penguin", [
@@ -23,6 +23,7 @@ def lee_pingüinos(ruta_archivo: str) -> list[Penguin]:
     Devuelve:
     list[Penguin]: Lista de tuplas Penguin con los datos leídos del archivo.
     """    
+    # TODO: Estudiar este código y tratar de entenderlo entero
     with open(ruta_archivo, 'r') as f:
         pingüinos = []
         lector = csv.reader(f)
@@ -51,8 +52,13 @@ def cuenta_pingüinos_por_especie(pingüinos: list[Penguin]) -> dict[str, int]:
     Devuelve:
     dict[str, int]: Diccionario que asocia cada especie de pingüino con su conteo.
     """
-    # TODO: Implementar la función
-    pass
+    # Usamos un generador, para no tener que crear una lista
+    # en memoria con el campo species:
+    # species = []
+    # for p in pingüinos:
+    #    species.append(p.species)
+    # return Counter(species)
+    return Counter(p.species for p in pingüinos)
 
 def calcula_media_masa_corporal_por_especie(pingüinos: list[Penguin]) -> dict[str, float]:
     """
@@ -64,8 +70,20 @@ def calcula_media_masa_corporal_por_especie(pingüinos: list[Penguin]) -> dict[s
     Devuelve:
     dict[str, float]: Diccionario que asocia cada especie de pingüino con su masa corporal media.
     """
-    # TODO: Implementar la función
-    pass
+    pesos_por_especie = defaultdict(list)
+    for p in pingüinos:
+        if p.body_mass_g != None:
+            # Esto no hace falta porque estamos
+            # usando defaultdict(list)
+            # if p.species not in pesos_por_especie:
+            #     pesos_por_especie[p.species] = []
+            pesos_por_especie[p.species].append(p.body_mass_g)
+        
+    res = {}
+    for especie, pesos in pesos_por_especie.items():
+        # Esta división NO es peligrosa (piénsalo)
+        res[especie] = sum(pesos) / len(pesos)
+    return res
 
 def calcula_minimo_maximo_pico_por_especie(pingüinos: list[Penguin]) -> dict[str, tuple[float, float]]:
     """
@@ -78,7 +96,8 @@ def calcula_minimo_maximo_pico_por_especie(pingüinos: list[Penguin]) -> dict[st
     dict[str, tuple[float, float]]: Diccionario que asocia cada especie de pingüino con una tupla
                                     que contiene la longitud mínima y máxima del pico.
     """
-    # TODO: Implementar la función
+    # TODO: Hacer para el 3 de diciembre
+
     pass
 
 
