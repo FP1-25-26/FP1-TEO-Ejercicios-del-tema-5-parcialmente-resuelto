@@ -18,6 +18,8 @@ def test_calcula_media_masa_corporal_por_especie():
     res = calcula_media_masa_corporal_por_especie(pingüinos)
     print(f"\t Resultado: {res}")
     expected = {'Adelie': 3700, 'Gentoo': 5076, 'Chinstrap': 3733}
+    # Convertimos a int los valores de res
+    res = {especie: int(masa) for especie, masa in res.items()}
     assert res == expected
 
 def test_calcula_minimo_maximo_pico_por_especie():
@@ -48,6 +50,8 @@ def test_calcula_media_masa_corporal_por_especie_filtro():
     res = calcula_media_masa_corporal_por_especie_filtro(pingüinos, filtra_isla="Biscoe")
     print(f"\t Resultado: {res}")
     expected = {'Adelie': 3709, 'Gentoo': 5076}
+    # Convertimos a int los valores de res
+    res = {especie: int(masa) for especie, masa in res.items()}
     assert res == expected
 
 def test_calcula_minimo_maximo_pico_por_especie_filtro():
@@ -61,9 +65,9 @@ def test_calcula_minimo_maximo_pico_por_especie_filtro():
     assert res == expected
 
 test_cuenta_pingüinos_por_especie()
-#test_calcula_media_masa_corporal_por_especie()
-#test_calcula_minimo_maximo_pico_por_especie()
-#test_cuenta_pingüinos_por_especie_filtro()
-#test_calcula_media_masa_corporal_por_especie_filtro()
-#test_calcula_minimo_maximo_pico_por_especie_filtro()
+test_calcula_media_masa_corporal_por_especie()
+test_calcula_minimo_maximo_pico_por_especie()
+test_cuenta_pingüinos_por_especie_filtro()
+test_calcula_media_masa_corporal_por_especie_filtro()
+test_calcula_minimo_maximo_pico_por_especie_filtro()
 print("Todos los tests pasaron correctamente.")
