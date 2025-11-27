@@ -112,7 +112,7 @@ def cuenta_pingüinos_por_especie_filtro(pingüinos: list[Penguin], filtra_isla:
     Devuelve:
     dict[str, int]: Diccionario que asocia cada especie de pingüino con su conteo.
     """
-    # TODO: Implementar la función
+    # TODO: Hacer para el 3 de diciembre
     pass
 
 def calcula_media_masa_corporal_por_especie_filtro(pingüinos: list[Penguin], filtra_isla: str = None) -> dict[str, float]:
@@ -126,7 +126,7 @@ def calcula_media_masa_corporal_por_especie_filtro(pingüinos: list[Penguin], fi
     Devuelve:
     dict[str, float]: Diccionario que asocia cada especie de pingüino con su masa corporal media.
     """
-    # TODO: Implementar la función
+    # TODO: Hacer para el 3 de diciembre
     pass
 
 def calcula_minimo_maximo_pico_por_especie_filtro(pingüinos: list[Penguin], filtra_isla: str = None) -> dict[str, tuple[float, float]]:
@@ -141,6 +141,6 @@ def calcula_minimo_maximo_pico_por_especie_filtro(pingüinos: list[Penguin], fil
     dict[str, tuple[float, float]]: Diccionario que asocia cada especie de
                                     pingüino con una tupla que contiene la longitud mínima y máxima del pico.
     """
-    # TODO: Implementar la función
+    # TODO: Hacer para el 3 de diciembre
     pass
 
