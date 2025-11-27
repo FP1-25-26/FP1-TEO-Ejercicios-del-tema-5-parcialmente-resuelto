@@ -72,6 +72,7 @@ def indexa_por_iniciales(texto: str) -> dict[str, set[str]]:
          que comienzan por dicha inicial.
     
     """
+    # TODO: Intentar resolver usando un defaultdict(set)
     # Dividimos la cadena en palabras (los trozos separados por espacio)
     palabras = texto.lower().split()
     res = {}
@@ -99,6 +100,7 @@ def construye_frecuencias_bigramas(texto: str) -> dict[str, float]:
     """
     conteos = {}
     texto = texto.lower()
+    # TODO: Intentar resolver sin zip, usando range
     for c1, c2 in zip(texto, texto[1:]):
         bigrama = c1 + c2
         if bigrama.isalpha():
@@ -130,7 +132,7 @@ def calcula_distancia_media_frecuencias(freq1: dict[str, float], freq2: dict[str
     for bigrama in todas_claves:
         suma += abs(freq1.get(bigrama, 0) - freq2.get(bigrama, 0))
     
-    return suma / len(todas_claves)  # !!!!!!
+    return suma / len(todas_claves)  # !!!!!! => ¿puede ser 0 el denominador?
 
 
 def identifica_idioma(textos_ejemplo: dict[str, str], texto_a_identificar: str) -> str:
