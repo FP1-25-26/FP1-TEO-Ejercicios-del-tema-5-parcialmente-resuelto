@@ -96,10 +96,20 @@ def calcula_minimo_maximo_pico_por_especie(pingüinos: list[Penguin]) -> dict[st
     dict[str, tuple[float, float]]: Diccionario que asocia cada especie de pingüino con una tupla
                                     que contiene la longitud mínima y máxima del pico.
     """
-    # TODO: Hacer para el 3 de diciembre
+    # 1. Agrupamos los valores de bill_length_mm por especie
+    longitudes_por_especie = defaultdict(list)
+    for p in pingüinos:
+        if p.bill_length_mm != None:
+            longitudes_por_especie[p.species].append(p.bill_length_mm)
 
-    pass
+    # 2. Recorremos el diccionario para calcular mínimo y máximo de cada lista
+    res = {}
+    for species, longitudes in longitudes_por_especie.items():
+        res[species] = (min(longitudes), max(longitudes))
 
+    # Se podría hacer una definición por comprensión
+    #res = {species:(min(longitudes), max(longitudes)) 
+    #       for species, longitudes in longitudes_por_especie.items()}
 
 def cuenta_pingüinos_por_especie_filtro(pingüinos: list[Penguin], filtra_isla: str = None) -> dict[str, int]:
     """
@@ -141,6 +151,14 @@ def calcula_minimo_maximo_pico_por_especie_filtro(pingüinos: list[Penguin], fil
     dict[str, tuple[float, float]]: Diccionario que asocia cada especie de
                                     pingüino con una tupla que contiene la longitud mínima y máxima del pico.
     """
-    # TODO: Hacer para el 3 de diciembre
-    pass
+    filtrado = []
+    for p in pingüinos:
+        if filtra_isla == None or p.island == filtra_isla:
+            filtrado.append(p)
+    return calcula_minimo_maximo_pico_por_especie(filtrado)
+
+    return calcula_minimo_maximo_pico_por_especie(
+        p for p in pingüinos 
+        if filtra_isla == None or p.island == filtra_isla
+        ) 
 
